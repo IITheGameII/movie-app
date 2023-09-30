@@ -15,7 +15,7 @@ function Searchfield() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer your-api-key-here', // Replace with your API key
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTZkNjc4NTRlMjE4MjcxOThkNzU5OGUwZmIwYjBmZCIsInN1YiI6IjY1MTZhZmJmYTE5OWE2MDEzOGI4MWU0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JcDppgMNSax-FO2JJLKXhXghF3eSv4E0ulOCtWDdhhg', // Replace with your API key
             }
         };
 
