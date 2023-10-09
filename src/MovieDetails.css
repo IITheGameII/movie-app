@@ -1,0 +1,81 @@
+/* MovieDetails.css */
+
+/* Background styles */
+.movie-details-background {
+    background-color: #1a1a1a !important;
+    /* Dark background color */
+    padding: 20px;
+    /* Add some padding to the background */
+}
+
+/* Container styles */
+.movie-details-container {
+    background-color: #fff;
+    /* White container background */
+    border-radius: 8px;
+    /* Rounded corners for the container */
+    padding: 20px;
+    /* Add some padding to the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Box shadow for a subtle depth effect */
+}
+
+/* Movie poster styles */
+.movie-poster {
+    border-radius: 8px;
+    /* Rounded corners for the poster image */
+}
+
+/* Title styles */
+h2 {
+    color: #333;
+    /* Dark text color for the title */
+    font-size: 24px;
+    /* Increase the font size for the title */
+}
+
+/* Overview styles */
+p {
+    color: #666;
+    /* Slightly lighter text color for the overview */
+    font-size: 16px;
+    /* Font size for the overview text */
+}
+
+/* Cast styles */
+h3 {
+    color: #333;
+    /* Dark text color for the cast heading */
+}
+
+ul {
+    list-style-type: none;
+    /* Remove bullet points from the list */
+    padding: 0;
+    /* Remove default padding from the list */
+}
+
+.movie-cast {
+    color: #666;
+    /* Slightly lighter text color for the cast members */
+    font-size: 14px;
+    /* Font size for the cast member names */
+    margin-bottom: 8px;
+    /* Add some spacing between cast members */
+}
+
+/* Trailer styles */
+iframe {
+    border: none;
+    /* Remove border from the video iframe */
+    border-radius: 8px;
+    /* Rounded corners for the video */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .movie-details-container {
+        padding: 10px;
+        /* Adjust padding for smaller screens */
+    }
+}

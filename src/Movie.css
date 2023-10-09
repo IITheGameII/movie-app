@@ -1,0 +1,68 @@
+.container {
+    width: 75% !important;
+}
+
+.text {
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: 500;
+    transition: transform 0.5s ease;
+}
+
+.title:hover {
+    transform: scale(1.02);
+}
+
+img {
+    transition: transform 1s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+.more-details {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: 6.2rem;
+    padding: 0.2rem 0.5rem;
+    background-color: darkblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+/* Hover Effect */
+.more-details:hover {
+    background-color: #2980b9;
+    transform: scale(1.04);
+}
+
+.more-details2 {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-left: 1.4rem;
+    padding: 0.2rem 0.5rem;
+    background-color: darkblue;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.5s ease;
+}
+
+/* Hover Effect */
+.more-details2:hover {
+    background-color: #2980b9;
+    transform: scale(1.04);
+}

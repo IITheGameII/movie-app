@@ -1,17 +1,19 @@
 import React from 'react';
 import Movie from './Movie';
-import Searchfield from './Searchfield';
-import Searchfield2 from './Searchfield2';
-/* import Upcoming from './UpcomingMovies';
- */
+import MovieDetails from './MovieDetails';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Searchresult from './Searchresult';
+
 function App() {
   return (
-    <div>
-      {/* <Searchfield /> */}
-      <Searchfield2 />
-      <Movie />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' exact element={<Movie />} />
+        <Route path='/movie/:id' element={<MovieDetails />} />
+        <Route path='/search/:keyword' element={<Searchresult />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
-export default App;
+export default App; 

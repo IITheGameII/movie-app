@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Searchresult from './Searchresult';
 
-function Searchfield() {
-    const [query, setQuery] = useState('');
+function Searchfield2() {
     const [results, setResults] = useState([]);
     const [totalResults, setTotalResults] = useState(null);
-    const [page, setPage] = useState(1);
+    const [query, setQuery] = useState('');
+    /* const [page, setPage] = useState(1); */
+    const navigate = useNavigate();
 
     const handleSearch = (e) => {
         e.preventDefault();
-        setResults([]);
-        setPage(1);
+        /* setResults([]);
+        setPage(1); */
 
         const options = {
             method: 'GET',
@@ -20,17 +23,23 @@ function Searchfield() {
         };
 
         fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
-            .then(resSearch => resSearch.json())
-            .then(data => {
-                setResults(data.results);
-                setTotalResults(data.total_results);
+            .then(resSearch => {
+                resSearch.json()
+                console.log(resSearch)
+            })
+            .then(resSearch => {
+                /* setResults(data.results);
+                setTotalResults(data.total_results); */
+                setResults(resSearch.results);
+                console.log(results + 'evo me');
+                navigate(`/search/${query}`, { state: { results: resSearch } })
             })
             .catch(err => {
                 console.error(err);
             });
     };
 
-    const loadMoreResults = () => {
+    /* const loadMoreResults = () => {
         if (results.length < totalResults) {
             const nextPage = page + 1;
             const options = {
@@ -50,14 +59,14 @@ function Searchfield() {
                     console.error(err);
                 });
         }
-    };
+    }; */
 
-    useEffect(() => {
+    /* useEffect(() => {
         // Function to handle the scroll event and trigger lazy-loading
         const handleScroll = () => {
             const windowHeight = window.innerHeight;
             const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
             if (scrollTop + windowHeight >= documentHeight - 100) {
                 // Load more results when scrolling near the bottom (adjust 100 as needed)
@@ -71,7 +80,7 @@ function Searchfield() {
             // Clean up the event listener when the component unmounts
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [results, totalResults, page]);
+    }, [results, totalResults, page]); */
 
     return (
         <div>
@@ -82,32 +91,35 @@ function Searchfield() {
                     placeholder="Search for a movie..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    autoFocus
                 />
                 <button type='submit'>Search</button>
             </form>
-            <div>
-                {totalResults !== null && <p>Total Results: {totalResults}</p>}
+
+
+            {/*  <div>
+                {totalResults !== null && <p>Total Results Found: {totalResults}</p>}
                 {results && results.length > 0 ? (
                     results.map((movie) => (
-                        <div key={movie.id}>
-                            <img
-                                src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                                alt={movie.title}
-                            />
-                            <h2>{movie.title}</h2>
+                        <>
+                            <Link to={`/movie/${movie.id}`} key={movie.id}>
+                                <img
+                                    src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+                                    alt={movie.title}
+                                />
+                                <h2>{movie.title}</h2>
+                            </Link>
                             <p>{movie.overview}</p>
                             <br />
                             <br />
-                            <br />
-                        </div>
+                        </>
                     ))
                 ) : (
                     <p></p>
                 )}
-            </div>
-        </div>
+            </div> */}
+            <Searchresult />
+        </div >
     );
 }
 
-export default Searchfield;
+export default Searchfield2;
