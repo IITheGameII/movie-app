@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
 function Searchresult() {
-    const { results } = useParams();
-    console.log(results);
+    const { query } = useParams();
+    const location = useLocation();
+    const { results, totalResults } = location.state || {};
 
     return (
         <div>
-            {/*{totalResults !== null && <p>Total Results Found: {totalResults}</p>}*/}
+            {totalResults !== null && <p>Total Results Found: {totalResults}</p>}
+            <h1>Search results for: {query}</h1>
             {results && results.length > 0 ? (
                 results.map((movie) => (
                     <>

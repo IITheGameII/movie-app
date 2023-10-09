@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Searchresult from './Searchresult';
+import { useNavigate } from 'react-router-dom';
 
 function Searchfield2() {
     const [results, setResults] = useState([]);
     const [totalResults, setTotalResults] = useState(null);
     const [query, setQuery] = useState('');
-    /* const [page, setPage] = useState(1); */
+    const [page, setPage] = useState(1);
+
     const navigate = useNavigate();
 
     const handleSearch = (e) => {
         e.preventDefault();
-        /* setResults([]);
-        setPage(1); */
+        setResults([]);
+        setPage(1);
 
         const options = {
             method: 'GET',
@@ -23,23 +25,18 @@ function Searchfield2() {
         };
 
         fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
-            .then(resSearch => {
-                resSearch.json()
-                console.log(resSearch)
-            })
-            .then(resSearch => {
-                /* setResults(data.results);
-                setTotalResults(data.total_results); */
-                setResults(resSearch.results);
-                console.log(results + 'evo me');
-                navigate(`/search/${query}`, { state: { results: resSearch } })
+            .then(res => { res.json() })
+            .then(data => {
+                setResults(data.results);
+                setTotalResults(data.total_results);
+                navigate(`/search/${query}`, { state: { results: data.results, totalResults: data.totalResults } });
             })
             .catch(err => {
                 console.error(err);
             });
     };
 
-    /* const loadMoreResults = () => {
+    const loadMoreResults = () => {
         if (results.length < totalResults) {
             const nextPage = page + 1;
             const options = {
@@ -59,9 +56,9 @@ function Searchfield2() {
                     console.error(err);
                 });
         }
-    }; */
+    };
 
-    /* useEffect(() => {
+    useEffect(() => {
         // Function to handle the scroll event and trigger lazy-loading
         const handleScroll = () => {
             const windowHeight = window.innerHeight;
@@ -80,7 +77,7 @@ function Searchfield2() {
             // Clean up the event listener when the component unmounts
             window.removeEventListener('scroll', handleScroll);
         };
-    }, [results, totalResults, page]); */
+    }, [results, totalResults, page]);
 
     return (
         <div>
@@ -96,7 +93,7 @@ function Searchfield2() {
             </form>
 
 
-            {/*  <div>
+            <div>
                 {totalResults !== null && <p>Total Results Found: {totalResults}</p>}
                 {results && results.length > 0 ? (
                     results.map((movie) => (
@@ -116,8 +113,8 @@ function Searchfield2() {
                 ) : (
                     <p></p>
                 )}
-            </div> */}
-            <Searchresult />
+            </div>
+            {/* <Searchresult /> */}
         </div >
     );
 }
