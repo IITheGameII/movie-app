@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Searchresult from './Searchresult';
-import { useNavigate } from 'react-router-dom';
+/* import { useNavigate } from 'react-router-dom'; */
 
 function Searchfield2() {
     const [results, setResults] = useState([]);
@@ -9,7 +9,7 @@ function Searchfield2() {
     const [query, setQuery] = useState('');
     const [page, setPage] = useState(1);
 
-    const navigate = useNavigate();
+    /* const navigate = useNavigate(); */
 
     const handleSearch = (e) => {
         e.preventDefault();
@@ -20,16 +20,16 @@ function Searchfield2() {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTZkNjc4NTRlMjE4MjcxOThkNzU5OGUwZmIwYjBmZCIsInN1YiI6IjY1MTZhZmJmYTE5OWE2MDEzOGI4MWU0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JcDppgMNSax-FO2JJLKXhXghF3eSv4E0ulOCtWDdhhg', // Replace with your API key
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlMTZkNjc4NTRlMjE4MjcxOThkNzU5OGUwZmIwYjBmZCIsInN1YiI6IjY1MTZhZmJmYTE5OWE2MDEzOGI4MWU0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.JcDppgMNSax-FO2JJLKXhXghF3eSv4E0ulOCtWDdhhg',
             }
         };
 
         fetch(`https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`, options)
             .then(res => { res.json() })
-            .then(data => {
-                setResults(data.results);
-                setTotalResults(data.total_results);
-                navigate(`/search/${query}`, { state: { results: data.results, totalResults: data.totalResults } });
+            .then(res => {
+                setResults(res.results);
+                setTotalResults(res.total_results);
+                /* navigate(`/search/${query}`, { state: { results: res.results, totalResults: res.totalResults } }); */
             })
             .catch(err => {
                 console.error(err);
